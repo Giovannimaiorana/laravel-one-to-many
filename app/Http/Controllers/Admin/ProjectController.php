@@ -56,7 +56,8 @@ class ProjectController extends Controller
 
     public function edit(Project $project)
     {
-        return view('admin.edit',compact('project'));
+        $types=Type::all();
+        return view('admin.edit',compact('project','types'));
     }
 
 
@@ -64,6 +65,7 @@ class ProjectController extends Controller
     {
         $data = $request->validated();
         $project->update($data);
+
 
         return redirect()->route('admin.projects.show',['project'=>$project->id]);
     }
